@@ -41,9 +41,4 @@ while not piloto:
 
        
 print(f'A resposta é : {piloto}')
-
-arquivo = open(input('Nome do arquivo a ser editado:'), 'r+')
-texto = arquivo.readlines()
-texto.append(input('insira o valor'))
-arquivo.writelines(texto)
-arquivo.close()
+print(v)
