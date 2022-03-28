@@ -19,34 +19,39 @@ while not piloto:
     if resposta_rodada == 'S':
         y = pergunta_rodada
         v.append(y)
-        x = int(1)
+        x = ('sim')
         v.append(x)
         dados = dados[dados[pergunta_rodada] == 1].drop(columns=[pergunta_rodada])
     elif resposta_rodada =='N':
         y = pergunta_rodada
         v.append(y)
-        x = int(0)
+        x =('nao')
         v.append(x)
         dados = dados[dados[pergunta_rodada] == 0].drop(columns=[pergunta_rodada])
     elif resposta_rodada == 'SIM':
         y = pergunta_rodada
         v.append(y)
-        x = int(1)
+        x = ('sim')
         v.append(x)
         dados = dados[dados[pergunta_rodada] == 1].drop(columns=[pergunta_rodada])
     elif resposta_rodada =='NAO':
         y = pergunta_rodada
         v.append(y)
-        x = int(0)
+        x =('nao')
         v.append(x)
         dados = dados[dados[pergunta_rodada] == 0].drop(columns=[pergunta_rodada])
 
     if len(dados.index) == 1:
         piloto = dados['Piloto'].values[0]
     elif len(dados.index) == 0:
-        print('As Respostas foram Inconclusivas. Vamos Recomeçar?')
-        dados = pd.read_csv('perguntas.csv')
+        print('As Respostas foram Inconclusivas,Por favor Digite Sua Resposta:')
+        info = v
+        df = pd.DataFrame(info)
+        df.to_csv(f'{input()}.txt')
+        print('Resposta Salva Com sucesso')
+        
+        break
+
 
        
 print(f'A resposta é : {piloto}')
-print(v)
