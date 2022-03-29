@@ -14,32 +14,25 @@ while not piloto:
         respostas.append(dados[pergunta].sum())
 
     pergunta_rodada = perguntas[respostas.index(max(respostas))]
-    resposta_rodada = input(f'{pergunta_rodada}(S para Sim / N para Não ')
+    resposta_rodada = input(f'{pergunta_rodada}(S para Sim / N para Não )')
 
-    if resposta_rodada == 'S':
+    if resposta_rodada == 'S' or resposta_rodada == 'SIM':
         y = pergunta_rodada
         v.append(y)
         x = ('sim')
         v.append(x)
         dados = dados[dados[pergunta_rodada] == 1].drop(columns=[pergunta_rodada])
-    elif resposta_rodada =='N':
+
+    elif resposta_rodada =='N' or resposta_rodada =='NAO':
         y = pergunta_rodada
         v.append(y)
         x =('nao')
         v.append(x)
         dados = dados[dados[pergunta_rodada] == 0].drop(columns=[pergunta_rodada])
-    elif resposta_rodada == 'SIM':
-        y = pergunta_rodada
-        v.append(y)
-        x = ('sim')
-        v.append(x)
-        dados = dados[dados[pergunta_rodada] == 1].drop(columns=[pergunta_rodada])
-    elif resposta_rodada =='NAO':
-        y = pergunta_rodada
-        v.append(y)
-        x =('nao')
-        v.append(x)
-        dados = dados[dados[pergunta_rodada] == 0].drop(columns=[pergunta_rodada])
+    else :
+        print(f'input invalido')
+        
+   
 
     if len(dados.index) == 1:
         piloto = dados['Piloto'].values[0]
@@ -49,8 +42,8 @@ while not piloto:
         df = pd.DataFrame(info)
         df.to_csv(f'{input()}.txt')
         print('Resposta Salva Com sucesso')
+        piloto = int(0)
         
-        break
 
 
        
