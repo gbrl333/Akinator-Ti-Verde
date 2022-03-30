@@ -1,0 +1,7 @@
+,0
+0,Ele e Campeao do Mundo?
+1,nao
+2,Ele e Brasileiro?
+3,sim
+4,Correu pela Ferrari?
+5,nao
