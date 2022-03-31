@@ -38,10 +38,7 @@ while not piloto:
         piloto = dados['Piloto'].values[0]
     elif len(dados.index) == 0:
         print('As Respostas foram Inconclusivas,Por favor Digite Sua Resposta:')
-        info = v
-        df = pd.DataFrame(info)
-        df.to_csv(f'{input()}.txt')
-        print('Resposta Salva Com sucesso')
+        
         piloto = int(0)
         
 

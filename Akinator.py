@@ -38,15 +38,16 @@ def janela_tres():
 def janela_quatro():
     layout = [
         [sg.Text('Sua Resposta Foi Inconclusiva')],
-        [sg.Text('Digite sua Resposta para Salvarmos no Banbo de Dados ')],
-        [sg.Text(size=(20,1),key='RESPOSTAF')]
+        [sg.Text('Digite sua Resposta para Salvarmos no Banco de Dados ')],
+        [sg.Input(key='Arquivo')],
+        [sg.Button('Enviar para o Banco')]
 
     ]
     return sg.Window('tres', layout=layout,finalize=True,keep_on_top=True)
 
 #JANELA
 
-janela1,janela2,janela3 =janela_inicial(),None,None
+janela1,janela2,janela3,janela4 =janela_inicial(),None,None,None
 
 
 #FUNCIONAMENTO 
@@ -55,7 +56,18 @@ while True:
     window , event , valores = sg.read_all_windows()
     perguntas = list(dados.columns[1:].values)
     respostas = []
+    
+
+    if window == janela1 and event == sg.WIN_CLOSED:
+        break
+
+    if window == janela2 and event == sg.WIN_CLOSED:
+        break
+
     if window == janela3 and event == sg.WIN_CLOSED:
+            break
+
+    if window == janela4 and event == sg.WIN_CLOSED:
             break
 
     if piloto != None :
@@ -65,42 +77,42 @@ while True:
         janela3['RESPOSTAF'].update(piloto)
     
     if piloto == 0 :
-        print('oi')
-        janela3 = janela_tres()
+        janela4 = janela_quatro()
         janela2.hide()
-        janela3['RESPOSTAF'].update(piloto)
+        
+        
         
 
     for pergunta in perguntas:
         respostas.append(dados[pergunta].sum())
-
-    pergunta_rodada = perguntas[respostas.index(max(respostas))]    
-   
-    if window == janela1 and event == sg.WIN_CLOSED:
-        break
-
-    if window == janela2 and event == sg.WIN_CLOSED:
-        break
-
-    if window == janela3 and event == sg.WIN_CLOSED:
-        break
+        pergunta_rodada = perguntas[respostas.index(max(respostas))]
+        
+     
 
     if window == janela1 and event == 'Começar':
         janela2 = janela_dois()
         janela1.hide()
         janela2['PERGUNTA'].update(pergunta_rodada)
+    
+       
+   
+    if window == janela2:
+        
+        print('')
 
     if window == janela2 and event == 'Enviar':
         
+         
         resposta_rodada = valores['Resposta']
         
         if resposta_rodada == 'S' or resposta_rodada == 'SIM':
-                y = pergunta_rodada
-                v.append(y)
-                x = ('sim')
-                v.append(x)
-                dados = dados[dados[pergunta_rodada] == 1].drop(columns=[pergunta_rodada])
-                print('if sim')
+            y = pergunta_rodada
+            v.append(y)
+            x = ('sim')
+            v.append(x)
+            dados = dados[dados[pergunta_rodada] == 1].drop(columns=[pergunta_rodada])
+            print('s')
+            
 
         elif resposta_rodada =='N' or resposta_rodada =='NAO':
             y = pergunta_rodada
@@ -108,21 +120,29 @@ while True:
             x =('nao')
             v.append(x)
             dados = dados[dados[pergunta_rodada] == 0].drop(columns=[pergunta_rodada])
-            print('if nao')
+            print('n')
+            
         else :
             print(f'input invalido')
 
-
-        if len(dados.index) == 1:
+    if len(dados.index) == 1:
             piloto = dados['Piloto'].values[0]
+            info = v
+            df = pd.DataFrame(info)
+            df.to_csv(f'TESTE1.txt')
+            print('Resposta Salva Com sucesso')  
             
 
-        elif len(dados.index) == 0:
+    elif len(dados.index) == 0:
             print('As Respostas foram Inconclusivas,Por favor Digite Sua Resposta:')
-            piloto = int(0)   
-    janela2['PERGUNTA'].update(pergunta_rodada)
-    print(piloto)
+            piloto = int(0)
+            info = v
+            df = pd.DataFrame(info)
+            df.to_csv(f'TESTE.txt')
+            print('Resposta Salva Com sucesso')        
 
+        
+    janela2['PERGUNTA'].update(pergunta_rodada)
         
         
 
