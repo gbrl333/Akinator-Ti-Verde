@@ -24,7 +24,7 @@ def janela_inicial():
         
     ]
     
-    return sg.Window('Login',layout= layout,background_color='#538A42',grab_anywhere=True,finalize=True,auto_size_text=True,size=(800,200))
+    return sg.Window('Pagina Inicial',layout= layout,background_color='#538A42',grab_anywhere=True,finalize=True,auto_size_text=True,size=(800,200))
 def janela_dois():
     layout = [
         [sg.Text('Pergunta:',background_color='#538A42') , sg.Text(size=(20,1), key='PERGUNTA',background_color='#538A42')],
