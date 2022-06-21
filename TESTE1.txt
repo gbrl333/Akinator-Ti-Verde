@@ -1,0 +1,5 @@
+,0
+0,Vamos Começar?
+1,sim
+2,O objeto contem cor ?
+3,nao

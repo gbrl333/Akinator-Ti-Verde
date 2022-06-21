@@ -7,33 +7,40 @@ import pandas as pd
 from pkg_resources import yield_lines
 
 
-dados = pd.read_csv('perguntas.csv')
+dados = pd.read_csv('pergunta.csv')
 piloto = None
 v = []
 
 #LAYOUT
 def janela_inicial():
     layout = [
-        [sg.Text('Texto Chatao de Apresentaçao')],
-        [sg.Button('Começar')]
+        [sg.Text('Comece pensando em um objeto e descreva-o,',size=(100,1),background_color='#538A42')],
+        [sg.Text('nossa inteligência artificial adivinhará o que estava pensando e lhe daremos formas de reciclá-lo, se possível.',size=(100,1),background_color='#538A42')],
+        [sg.Text('Caso não acerte pedimos que colabore com nosso banco de dados e diga em que estava pensando!',size=(100,1),background_color='#538A42')],
+        [sg.Text('Agora que você já sabe como o jogo funciona, que tal jogarmos um pouquinho?',size=(100,1),background_color='#538A42')],
+        [sg.Text('',background_color='#538A42')],
+        [sg.Button('Começar',size=(100,1),button_color=('#416536'))]
+        
+        
     ]
-    return sg.Window('Login',layout= layout,finalize=True)
+    
+    return sg.Window('Login',layout= layout,background_color='#538A42',grab_anywhere=True,finalize=True,auto_size_text=True,size=(800,200))
 def janela_dois():
     layout = [
-        [sg.Text('My Layout')],
-        [sg.Text('Pergunta:') , sg.Text(size=(20,1), key='PERGUNTA')],
+        [sg.Text('Pergunta:',background_color='#538A42') , sg.Text(size=(20,1), key='PERGUNTA',background_color='#538A42')],
+        [sg.Text('(SIM ou NAO)',background_color='#538A42')],
         [sg.Input(key='Resposta',do_not_clear=False)],
-        [sg.Button('Enviar') , sg.Button('Cancel')]
+        [sg.Button('Enviar',button_color=('#416536')) , sg.Button('Cancel',button_color=('#416536'))]
     ]
-    return sg.Window('dois', layout=layout,finalize=True,keep_on_top=True)
+    return sg.Window('Perguntas', layout=layout,finalize=True,keep_on_top=True,auto_size_text=True,background_color='#538A42')
 
 def janela_tres():
     layout = [
-        [sg.Text('Sua Resposta é')],
-        [sg.Text(size=(20,1),key='RESPOSTAF')]
+        [sg.Text('Sua Resposta é',background_color='#538A42')],
+        [sg.Text(size=(20,1),key='RESPOSTAF',background_color='#538A42')]
 
     ]
-    return sg.Window('tres', layout=layout,finalize=True,keep_on_top=True)
+    return sg.Window('Resposta', layout=layout,finalize=True,keep_on_top=True,background_color='#538A42')
 
 def janela_quatro():
     layout = [
@@ -43,7 +50,7 @@ def janela_quatro():
         [sg.Button('Enviar para o Banco')]
 
     ]
-    return sg.Window('tres', layout=layout,finalize=True,keep_on_top=True)
+    return sg.Window('Resposta', layout=layout,finalize=True,keep_on_top=True)
 
 #JANELA
 
@@ -65,13 +72,13 @@ while True:
         break
 
     if window == janela3 and event == sg.WIN_CLOSED:
-            break
+        break
 
     if window == janela4 and event == sg.WIN_CLOSED:
-            break
+        break
 
     if piloto != None :
-        print('oi')
+        
         janela3 = janela_tres()
         janela2.hide()
         janela3['RESPOSTAF'].update(piloto)
@@ -126,7 +133,7 @@ while True:
             print(f'input invalido')
 
     if len(dados.index) == 1:
-            piloto = dados['Piloto'].values[0]
+            piloto = dados['Material'].values[0]
             info = v
             df = pd.DataFrame(info)
             df.to_csv(f'TESTE1.txt')

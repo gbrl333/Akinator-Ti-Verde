@@ -1,0 +1,8 @@
+Material,Vamos Começar?,O objeto é duro ?,O objeto é maleavel ?,O objeto é trasparente ?,O objeto é fragil ?,O objeto é brilhante ?,O objeto é magnetizado ?,O objeto contem cor ?,O objeto pode conter liquido dentro ?,O objeto é escuro ?,O objeto vem das arvores ?,O objeto é encotrado embaixo da terra ?,O objeto prejudica o meio ambiente ?,O objeto é comestivel ?,O objeto tem cheiro ?,O objeto é saudável ?
+Vidro,1,1,1,1,1,1,0,1,1,1,0,0,1,0,0,0
+Papel,1,0,1,0,1,0,0,1,0,1,1,0,1,0,0,0
+Plastico,1,0,1,1,0,0,0,1,1,1,0,1,1,0,0,0
+Ferro,1,1,0,0,0,1,1,0,1,1,0,1,0,0,1,0
+Orgânico,1,0,0,0,0,0,0,1,1,0,1,1,0,1,1,1
+Madeira,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,1
+Perdra,1,1,0,0,0,0,0,1,0,1,0,1,0,0,0,0
